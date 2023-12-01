@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     var sbk = new XMLHttpRequest();
+     sbk.open("GET","https://restcountries.com/v3.1/all");
+     sbk.send();
+     sbk.onload = function()
+      {
+        let details = JSON.parse(sbk.responseText);
+        console.log(details);
+      let value=(details.filter((country)=>country.currencies !== undefined));
+    
+       let answer=value.filter((details)=>{
+        for(let key in details.currencies){
+          if(details.currencies[key].name == "United States dollar"){
+            return details
+          }
+        }
+       })
+        
+         console.log(answer);
+      }                  
+      </script>
+</body>
+</html>
